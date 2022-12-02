@@ -7,20 +7,6 @@ import java.util.Scanner;
 
 public class Hauptmethode {
 	
-	public static void menueAufbauen() {
-		// Menue Aufbau
-		System.out.println("0 - Neue Zahl");
-		System.out.println("1 - Alle Zahlen anzeigen");
-		System.out.println("2 - Summe bilden");
-		System.out.println("3 - Maximum suchen");
-		System.out.println("4 - Minimum suchen");
-		System.out.println("5 - Durchschnitt berechnen");
-		System.out.println("6 - Sortieren (aufsteigend)");
-		System.out.println("7 - Sortieren (absteigend)");
-		System.out.println("8 - Alle Zahlen entfernen");
-		System.out.println("9 - ENDE");
-		System.out.println("Ihre Wahl? ");
-	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,43 +31,28 @@ public class Hauptmethode {
 		sum = 0;
 		sortiert = true;
 		
+		Analyse analyse = new Analyse();
 		
 		Scanner scan = new Scanner(System.in);
-		
+			
 		// Einstiegspunkt Menue ZahlenanalysePlus
 		while(run == true) {
 			
-			// Aufruf 
-			Hauptmethode.menueAufbauen();
-			opt = scan.nextByte();
+			// Methode zum aufbauen des Menues
+			Analyse.menueAufbauen();
 			
-			if(opt == 0 && n < x.length) {
-				System.out.print("Neue Zahl (Position " + (n+1) +"): ");
-				x[n] = scan.nextInt();
-				n++;
-			}
-			else if (opt == 0 && n >= x.length) {
-				System.out.println("Grenze des Arrays erreicht!");
+			// Eingabe des Nutzers einlesen
+			opt = scan.nextByte();
+	
+			
+			// Neue Zahl einlesen
+			
+			if(opt == 0) {
+				n = analyse.zahlEinlesen(x, n);
 			}
 			
 			else if (opt == 1){
-				System.out.print("Ausgabe Array\n");
-				System.out.println("==============");
-				for(int j=0; j<n; j++) {
-					
-					if (j != 0 && j%5 ==0) {
-						System.out.print("\n");
-					}
-					
-					if(j < n -1) {
-						System.out.printf("%3d - ", x[j]);
-					}
-	
-					else if (j == n -1) {
-						System.out.printf("%3d\n", x[j]);
-					}
-				}
-				System.out.println("==============\n");
+				Analyse.getArray(x, n);
 			}
 			
 			// Summe bilden
@@ -91,10 +62,10 @@ public class Hauptmethode {
 				}
 				else {
 					// Methodenaufruf
-					sum = EigeneMethode.summe(x, n);
+					sum = Analyse.summeBerechnen(x, n);
 
 				
-				System.out.println("========");
+				Analyse.printTrenner();
 				System.out.printf("Summe: %d\n\n", sum);
 				}
 			}
