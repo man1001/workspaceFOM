@@ -69,6 +69,7 @@ public class Analyse {
 			printHeadline("Keine Zahlen vorhanden!");
 		}
 		else {
+			printHeadline("Ausgabe aller Zahlen im Array");
 			for(int j=0; j<n; j++) {
 				
 				if (j != 0 && j%5 ==0) {
@@ -83,9 +84,49 @@ public class Analyse {
 					System.out.printf("%3d\n", array[j]);
 				}
 			}
-			printTrenner();
+			System.out.println("\n");
 		}
-
+	}
+	
+	// Methode zum Suchen des Maximums
+	public static int getMax(int[] array, int n) {
+		int max = 0;
+		if(n == 0) {
+			printHeadline("Keine Zahlen vorhanden!");
+		}
+		else {
+			for(int i = 0; i < n; i++) {	
+				if(array[i] >= max) {
+					max = array[i];
+				}
+			}
+		System.out.println("Maximum: "+ max);
+		}
+		return max;
+	}
+	
+	// Methode zum Suchen des Minimums
+	public static int getMin(int[] array, int n) {
+		int min = 0;
+		if(n == 0) {
+			printHeadline("Keine Zahlen vorhanden!");
+		}
+		else {
+			for(int i = 0; i < n; i++) {	
+				if(array[i] <= min) {
+					min = array[i];
+				}
+			}
+		System.out.println("Minimum: "+ min);
+		}
+		return min;
+	}
+	
+	// Methode zur Berechnung des Durchschnitts
+	
+	public void getDurchschnitt(int[] array, int n) {
+		double dSchnitt = (double)(summeBerechnen(array, n))/n;
+		System.out.printf("Durchschnitt: %.2f\n\n", dSchnitt);
 	}
 	
 	

@@ -31,15 +31,15 @@ public class Hauptmethode {
 		sum = 0;
 		sortiert = true;
 		
-		Analyse analyse = new Analyse();
+		Analyse tool = new Analyse();
 		
 		Scanner scan = new Scanner(System.in);
 			
-		// Einstiegspunkt Menue ZahlenanalysePlus
+		// Einstiegspunkt Menue ZahlentoolPlus
 		while(run == true) {
 			
 			// Methode zum aufbauen des Menues
-			Analyse.menueAufbauen();
+			tool.menueAufbauen();
 			
 			// Eingabe des Nutzers einlesen
 			opt = scan.nextByte();
@@ -48,11 +48,11 @@ public class Hauptmethode {
 			// Neue Zahl einlesen
 			
 			if(opt == 0) {
-				n = analyse.zahlEinlesen(x, n);
+				n = tool.zahlEinlesen(x, n);
 			}
 			
 			else if (opt == 1){
-				Analyse.getArray(x, n);
+				tool.getArray(x, n);
 			}
 			
 			// Summe bilden
@@ -62,51 +62,27 @@ public class Hauptmethode {
 				}
 				else {
 					// Methodenaufruf
-					sum = Analyse.summeBerechnen(x, n);
+					sum = tool.summeBerechnen(x, n);
 
 				
-				Analyse.printTrenner();
+				tool.printTrenner();
 				System.out.printf("Summe: %d\n\n", sum);
 				}
 			}
 			
 			// Maximum suchen
 			else if(opt == 3) {
-				if(n == 0) {
-					System.out.println("Keine Zahl vorhanden!");
-				}
-				else {
-					max = 0;
-					for(int i = 0; i < n; i++) {	
-						if(x[i]>= max) {
-							max = x[i];
-						}
-					}
-				System.out.println("Maximum: "+ max);
-				}
-
+				max = tool.getMax(x, n);
 			}
 			
 			// Minimum suchen
-			else if(opt == 3) {
-				if(n == 0) {
-					System.out.println("Keine Zahl vorhanden!");
-				}
-				else {
-					min = 0;
-					for(int i = 0; i < n; i++) {	
-						if(x[i] <= min) {
-							min = x[i];
-						}
-					}
-				System.out.println("Maximum: "+ min);
-				}
-
+			else if(opt == 4) {
+				Analyse.getMin(x, n);
 			}
 			
 			// Durchschnitt berechnen
 			if(opt == 5) {
-				
+				tool.getDurchschnitt(x, n);
 			}
 			
 			// Sortieren (aufsteigend)
@@ -156,6 +132,11 @@ public class Hauptmethode {
 				System.out.println("Zahlen wurden sortiert!");
 			}
 			
+			// Alle Zahlen entfernen, bzw Zaehler var n auf null setzten
+			if(opt == 8) {
+				n = 0;
+				Analyse.printHeadline("Alle Zahlen entfernt!");
+			}
 			
 			// Menue beenden -> Verabschiedung
 			if(opt == 9) {
