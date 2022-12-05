@@ -53,7 +53,13 @@ public class Analyse {
 	public int zahlEinlesen(int[] array, int n) {
 		if(n < array.length) {
 			System.out.print("Neue Zahl (Position " + (n+1) +"): ");
-			array[n] = scan.nextInt();
+			try {
+				array[n] = scan.nextInt();
+			} catch(Exception e){
+				printHeadline("Fehlerhafte Eingabe");
+				scan.next();
+			}
+			
 			n++;
 		}
 		else if(n >= array.length) {
@@ -127,6 +133,56 @@ public class Analyse {
 	public void getDurchschnitt(int[] array, int n) {
 		double dSchnitt = (double)(summeBerechnen(array, n))/n;
 		System.out.printf("Durchschnitt: %.2f\n\n", dSchnitt);
+	}
+	
+	public void sortUp(int[] array, int n) {
+		
+		boolean sortiert = false;
+		if (n == 0) {
+			System.out.println("Keine Zahl vorhanden!");
+		}
+		else {
+			printHeadline("Sortierung aufsteigend");
+			int tausch = 0;
+			do {
+				sortiert = true;
+					for (int i = 0; i < n - 1; i++ ) {
+						if(array[i]> array[i+1]) {
+							tausch = array[i];
+							array[i] = array[i+1];
+							array[i+1] = tausch;
+							sortiert = false;
+						}
+					}
+			} while (sortiert == false);
+			
+		}
+		System.out.println("Zahlen wurden sortiert!");
+	}
+	
+public void sortDown(int[] array, int n) {
+		
+		boolean sortiert = false;
+		if (n == 0) {
+			System.out.println("Keine Zahl vorhanden!");
+		}
+		else {
+			printHeadline("Sortierung absteigend");
+			int tausch = 0;
+			do {
+				sortiert = true;
+					for (int i = 0; i < n - 1; i++ ) {
+						if(array[i] < array[i+1]) {
+							tausch = array[i];
+							array[i] = array[i+1];
+							array[i+1] = tausch;
+							sortiert = false;
+						}
+					}
+			} while (sortiert == false);
+			
+		}
+		System.out.println("Zahlen wurden sortiert!");
 	}
 	
 	

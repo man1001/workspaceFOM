@@ -30,6 +30,7 @@ public class Hauptmethode {
 		k = 0;
 		sum = 0;
 		sortiert = true;
+
 		
 		Analyse tool = new Analyse();
 		
@@ -37,12 +38,19 @@ public class Hauptmethode {
 			
 		// Einstiegspunkt Menue ZahlentoolPlus
 		while(run == true) {
-			
+			opt = -1;
 			// Methode zum aufbauen des Menues
 			tool.menueAufbauen();
 			
 			// Eingabe des Nutzers einlesen
-			opt = scan.nextByte();
+			try {
+				opt = scan.nextByte();
+			} catch (Exception e) {
+				// TODO: handle exception
+				Analyse.printHeadline("Fehlerhafte Eingabe!");
+				scan.next();
+			}
+
 	
 			
 			// Neue Zahl einlesen
@@ -87,49 +95,12 @@ public class Hauptmethode {
 			
 			// Sortieren (aufsteigend)
 			if(opt == 6) {
-				if (n == 0) {
-					System.out.println("Keine Zahl vorhanden!");
-				}
-				else {
-					int tausch = 0;
-					do {
-						sortiert = true;
-							for (int i = 0; i < n - 1; i++ ) {
-								if(x[i]> x[i+1]) {
-									tausch = x[i];
-									x[i] = x[i+1];
-									x[i+1] = tausch;
-									sortiert = false;
-								}
-							}
-					} while (sortiert == false);
-					
-				}
-				System.out.println("Zahlen wurden sortiert!");
+				tool.sortUp(x, n);
 			}
 			
 			// Sortieren (absteigend)
 			if(opt == 7) {
-				if (n == 0) {
-					System.out.println("Keine Zahl vorhanden!");
-				}
-				else {
-
-					int tausch = 0;
-					do {
-							sortiert = true;
-							for (int i = 0; i < n - 1; i++ ) {
-								if(x[i] < x[i+1]) {
-									tausch = x[i];
-									x[i] = x[i+1];
-									x[i+1] = tausch;
-									sortiert = false;
-								}
-							}
-					} while (sortiert == false);
-					
-				}
-				System.out.println("Zahlen wurden sortiert!");
+				tool.sortDown(x, n);
 			}
 			
 			// Alle Zahlen entfernen, bzw Zaehler var n auf null setzten
