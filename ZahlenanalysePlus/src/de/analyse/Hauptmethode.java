@@ -1,5 +1,6 @@
 package de.analyse;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
 public class Hauptmethode {
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
 		//deklaration
@@ -35,6 +36,9 @@ public class Hauptmethode {
 		Analyse tool = new Analyse();
 		
 		Scanner scan = new Scanner(System.in);
+		
+		// Daten aus alter Datei laden
+		n = Analyse.readData(x);
 			
 		// Einstiegspunkt Menue ZahlentoolPlus
 		while(run == true) {
@@ -117,12 +121,7 @@ public class Hauptmethode {
 			
 			// Array mit Random Zahlen befuellen
 			if(opt == 10) {
-				Random rnd = new Random();
-				for(int i = n; i < x.length -1; i++) {
-					x[i] = rnd.nextInt(100);
-				}
-				n = 100;
-				System.out.println("Array befuellt!");
+				n = Analyse.addRandom(n, x);
 			}
 			
 		}

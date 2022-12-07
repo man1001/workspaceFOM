@@ -1,5 +1,12 @@
 package de.analyse;
+import java.util.Random;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Analyse {
 	
@@ -50,7 +57,7 @@ public class Analyse {
 	}
 	
 	// Methode zum einlesen einer neuen Zahl in das Array
-	public int zahlEinlesen(int[] array, int n) {
+	public int zahlEinlesen(int[] array, int n) throws IOException {
 		if(n < array.length) {
 			System.out.print("Neue Zahl (Position " + (n+1) +"): ");
 			try {
@@ -61,6 +68,7 @@ public class Analyse {
 			}
 			
 			n++;
+			saveData(n, array);
 		}
 		else if(n >= array.length) {
 			System.out.println("Fehler: Grenze des Arrays erreicht!");
@@ -135,7 +143,8 @@ public class Analyse {
 		System.out.printf("Durchschnitt: %.2f\n\n", dSchnitt);
 	}
 	
-	public void sortUp(int[] array, int n) {
+	// Bubble-Sort Algorithmus ausfwaerts
+	public void sortUp(int[] array, int n) throws IOException {
 		
 		boolean sortiert = false;
 		if (n == 0) {
@@ -158,31 +167,83 @@ public class Analyse {
 			
 		}
 		System.out.println("Zahlen wurden sortiert!");
+		saveData(n, array);
 	}
 	
-public void sortDown(int[] array, int n) {
-		
-		boolean sortiert = false;
-		if (n == 0) {
-			System.out.println("Keine Zahl vorhanden!");
-		}
-		else {
-			printHeadline("Sortierung absteigend");
-			int tausch = 0;
-			do {
-				sortiert = true;
-					for (int i = 0; i < n - 1; i++ ) {
-						if(array[i] < array[i+1]) {
-							tausch = array[i];
-							array[i] = array[i+1];
-							array[i+1] = tausch;
-							sortiert = false;
-						}
-					}
-			} while (sortiert == false);
+	// Bubble-Sort Algorithmus abwaerts
+	public void sortDown(int[] array, int n) throws IOException {
 			
+			boolean sortiert = false;
+			if (n == 0) {
+				System.out.println("Keine Zahl vorhanden!");
+			}
+			else {
+				printHeadline("Sortierung absteigend");
+				int tausch = 0;
+				do {
+					sortiert = true;
+						for (int i = 0; i < n - 1; i++ ) {
+							if(array[i] < array[i+1]) {
+								tausch = array[i];
+								array[i] = array[i+1];
+								array[i+1] = tausch;
+								sortiert = false;
+							}
+						}
+				} while (sortiert == false);
+				
+			}
+			System.out.println("Zahlen wurden sortiert!");
+			saveData(n, array);
 		}
-		System.out.println("Zahlen wurden sortiert!");
+	
+	// Array mit Random Zahlen befuellen
+				
+	public static int addRandom(int n, int[] array) throws IOException {
+					Random rnd = new Random();
+					for(int i = n; i < array.length; i++) {
+						array[i] = rnd.nextInt(100);
+					}
+					n = 100;
+					System.out.println("Array befuellt!");
+					saveData(n, array);
+					return n;
+				}
+	
+	// Speichern aller Zahlen
+	public static void saveData(int n, int[] array) throws IOException {
+		FileWriter fw = new FileWriter("Artikel.txt");
+		BufferedWriter bw = new BufferedWriter(fw);
+		
+		bw.write(n + "\n");
+		
+		for(int i = 0; i < array.length; i++) {
+			bw.write(array[i] + "\n");
+		}
+		
+		bw.close();
+		fw.close();
+		printHeadline("Daten gespeichert!");
+	}
+	
+	// Lesen aller Zahlen
+	public static int readData(int[] array) throws IOException  {
+		FileReader fr = new FileReader("Artikel.txt");
+		BufferedReader br = new BufferedReader(fr);
+		
+		String tmpString=br.readLine();
+		int n=Integer.parseInt(tmpString);
+		System.out.println("N:" + n);
+		
+		for(int i = 0; i < n; i++) {
+			tmpString = br.readLine();
+			array[i] = Integer.parseInt(tmpString);
+		}
+		
+		br.close();
+		fr.close();
+		printHeadline("Daten erfolgreich gelesen!");
+		return n;
 	}
 	
 	
