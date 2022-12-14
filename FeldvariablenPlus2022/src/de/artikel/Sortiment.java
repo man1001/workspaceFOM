@@ -193,7 +193,7 @@ public class Sortiment {
 		String ueberschrift = "Index     Bezeichnung      Menge     Preis              Wert";
 		printHeadline(ueberschrift);
 		for(int i = 0; i < n; i++) {
-			System.out.printf("%d     %10s          %4d      %7.2f €     %7.2f €\n",i, bezeichnung[i],menge[i],preis[i],(menge[i]*preis[i]));
+			System.out.printf("%d     %10s          %4d      %7.2f €     %7.2f €\n", i, bezeichnung[i], menge[i], preis[i], (menge[i]*preis[i]) );
 		}
 		printLine(ueberschrift);
 		lwRechnung();
@@ -251,11 +251,11 @@ public class Sortiment {
 			FileReader fr = new FileReader("Artikel.txt");
 			BufferedReader br = new BufferedReader(fr);
 			
-			String tmpString = br.readLine();
+			String tmpNString = br.readLine();
 			String tmpMeString;
 			String tmpPrString;
 			
-			n = Integer.parseInt(tmpString);
+			n = Integer.parseInt(tmpNString);
 			for(int i = 0; i < n; i++) {
 				bezeichnung[i] = br.readLine();
 				tmpMeString = br.readLine();
