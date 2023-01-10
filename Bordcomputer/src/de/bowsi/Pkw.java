@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
 
+
 public class Pkw {
 	// Variablen deklaration
 	private int kmStand;
@@ -53,12 +54,17 @@ public class Pkw {
 		return tankInhalt;
 	}
 	
-	// Methode Reichweite
+	// Methode gibt Reichweite zurueck
 	public float getReichweite() {
 		float reichweite;
 		reichweite = (tankInhalt / verbrauch) * 100;
 		return reichweite;
 	}
+	
+	public float getTankVolumen() {
+		return tankVolumen;
+	}
+	
 	
 	// Methode zum Fahren
 	public int fahren() {
@@ -166,12 +172,12 @@ public class Pkw {
 	}
 	
 	public void readData() {
-		String filePathString = "Data.txt";
+		String filePathString = "./Data.txt";
 		File f = new File(filePathString.trim());
 		
 		if(f.isFile()) {
 			try {
-				FileReader fr = new FileReader("Data.txt");
+				FileReader fr = new FileReader(filePathString);
 				BufferedReader br = new BufferedReader(fr);
 				
 				kmStand =  Integer.parseInt(br.readLine());
@@ -181,7 +187,7 @@ public class Pkw {
 				
 				br.close();
 				fr.close();
-				System.out.println("Gespeicherte Daten eingelesen!");
+				System.out.printf("Datei %s geladen\n\n",filePathString);
 				
 			}
 			catch(IOException e){

@@ -10,6 +10,8 @@ public class Hauptmethode {
 		boolean run = true;
 		int eingabe;
 		Pkw herbie = new Pkw(15000, 5.0f, 60.0f, 6.4f);
+		
+		// Gespeicherte Daten laden
 		herbie.readData();
 		
 		
@@ -34,6 +36,7 @@ public class Hauptmethode {
 				System.out.printf("Kilometerstand: %d km\n", herbie.getKmStand());
 				System.out.printf("Tankinhalt: %.2f l\n", herbie.getTankInhalt()); 
 				System.out.printf("Reichweite: %.2f km\n", herbie.getReichweite());
+				System.out.printf("Tankvolumen: %.2f l\n", herbie.getTankVolumen());
 				break;
 				
 			case 4:
@@ -49,6 +52,7 @@ public class Hauptmethode {
 					
 		} while(run);
 		
+		// Objekt Daten speichern
 		herbie.safeData();
 	}
 
