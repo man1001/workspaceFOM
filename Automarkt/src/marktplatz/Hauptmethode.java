@@ -2,6 +2,7 @@ package marktplatz;
 
 import java.io.File;
 import java.security.MessageDigest;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,10 +51,12 @@ public class Hauptmethode {
 			System.out.println("Hauptmenue:");
 			System.out.println("-----------");
 			
-			System.out.println("0 - Auto erfassen");
-			System.out.println("1 - Autoliste");
-			System.out.println("2 - Suche einer bestimmten Marke");		
-			System.out.println("9 - ENDE\n");
+			System.out.println("0  - Auto erfassen");
+			System.out.println("1  - Autoliste");
+			System.out.println("2  - Suche einer bestimmten Marke");		
+			System.out.println("9  - ENDE");
+			System.out.println("10 - simple save");
+			System.out.println("11 - simple load\n");
 			
 			System.out.println("Ihre Wahl: ");
 			
@@ -86,7 +89,7 @@ public class Hauptmethode {
 			case 1:
 				System.out.println("\nBestandsliste:");
 				System.out.println("--------------");
-				System.out.println("ID      Marke      Typ       Baujahr       Kilometerstand[km] Farbe Preis[€]");
+				System.out.println("ID      Marke      Typ       Baujahr       Kilometerstand[km] Farbe       Preis[€]");
 				for(int i = 0; i < pkwList.size(); i++) {
 					System.out.printf(
 							"\n%-6d  %-10s %-10s    %4d    %6d                %-10s %-6d\n", pkwList.get(i).getId(), pkwList.get(i).getMarke(), pkwList.get(i).getTyp(), pkwList.get(i).getBaujahr(), pkwList.get(i).getKmStand(), pkwList.get(i).getFarbe(), pkwList.get(i).getPreis());
@@ -100,7 +103,7 @@ public class Hauptmethode {
 				
 				System.out.println("Suchergebnis: ");
 				System.out.println("-------------\n");
-				System.out.println("ID      Marke      Typ       Baujahr       Kilometerstand[km] Farbe Preis[€]");
+				System.out.println("ID      Marke      Typ       Baujahr       Kilometerstand[km] Farbe       Preis[€]");
 				for(int i = 0; i < pkwList.size(); i++) {
 					if(sSuche.equalsIgnoreCase(pkwList.get(i).getMarke())) {
 						System.out.printf(
@@ -120,6 +123,14 @@ public class Hauptmethode {
 				run = false;
 				Pkw.saveDate(pkwList, filePathString);
 				System.out.println("Goodbye!");
+				break;
+			
+			case 10:
+				Pkw.saveDataSimple(pkwList);
+				break;
+				
+			case 11:
+				pkwList = Pkw.loadDataSimple();
 				break;
 
 			}
