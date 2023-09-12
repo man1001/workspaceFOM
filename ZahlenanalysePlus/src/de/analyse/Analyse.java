@@ -12,6 +12,8 @@ public class Analyse {
 	
 	Scanner scan = new Scanner(System.in);
 	
+	String s = new String("Hallo");
+	
 	// Methode zum aufbauen des Menues
 	public static void menueAufbauen() {
 		System.out.println("0 - Neue Zahl");
