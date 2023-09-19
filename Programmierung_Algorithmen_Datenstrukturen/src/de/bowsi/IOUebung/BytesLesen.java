@@ -8,7 +8,7 @@ import java.io.InputStream;
 public class BytesLesen {
 	
 	public static void main(String[] args) {
-		String datei = "bbytes.dat";
+		String datei = "bytes.dat";
 		
 		InputStream streamIn = null;
 		InputStream bufferIn = null;
